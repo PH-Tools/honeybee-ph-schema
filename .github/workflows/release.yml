@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e '.[dev]'
+
+      - name: Build schema artifacts
+        run: python scripts/build_schemas.py
+
+      - name: Pack schemas
+        run: tar -czf honeybee-ph-schema-artifacts.tar.gz schemas/
+
+      - name: Publish GitHub Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            schemas/ph-model.json
+            schemas/ph-model.yaml
+            schemas/ph-hvac.json
+            schemas/ph-hvac.yaml
+            schemas/ph-energy.json
+            schemas/ph-energy.yaml
+            schemas/model_json_schema.json
+            schemas/compatibility-matrix.json
+            honeybee-ph-schema-artifacts.tar.gz

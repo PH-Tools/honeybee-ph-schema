@@ -1,0 +1,275 @@
+{
+  "components": {
+    "schemas": {
+      "PhModelEnvelope": {
+        "$defs": {
+          "PhApertureProperties": {
+            "additionalProperties": true,
+            "properties": {
+              "type": {
+                "default": "PhApertureProperties",
+                "title": "Type",
+                "type": "string"
+              },
+              "window_type_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Window Type Id"
+              }
+            },
+            "title": "PhApertureProperties",
+            "type": "object"
+          },
+          "PhCertification": {
+            "additionalProperties": true,
+            "description": "Certification shape used by PHI/Phius payloads.",
+            "properties": {
+              "program_name": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Program Name"
+              },
+              "standard": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "PHI",
+                      "PHIUS",
+                      "ENERPHIT",
+                      "NONE"
+                    ],
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Standard"
+              }
+            },
+            "title": "PhCertification",
+            "type": "object"
+          },
+          "PhEnergyProperties": {
+            "additionalProperties": true,
+            "description": "Placeholder envelope for PH-Energy schema contract.",
+            "properties": {
+              "type": {
+                "default": "PhEnergyProperties",
+                "title": "Type",
+                "type": "string"
+              }
+            },
+            "title": "PhEnergyProperties",
+            "type": "object"
+          },
+          "PhFaceProperties": {
+            "additionalProperties": true,
+            "properties": {
+              "assembly_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Assembly Id"
+              },
+              "type": {
+                "default": "PhFaceProperties",
+                "title": "Type",
+                "type": "string"
+              }
+            },
+            "title": "PhFaceProperties",
+            "type": "object"
+          },
+          "PhHvacProperties": {
+            "additionalProperties": true,
+            "description": "Placeholder envelope for PH-HVAC schema contract.",
+            "properties": {
+              "type": {
+                "default": "PhHvacProperties",
+                "title": "Type",
+                "type": "string"
+              }
+            },
+            "title": "PhHvacProperties",
+            "type": "object"
+          },
+          "PhRoomProperties": {
+            "additionalProperties": true,
+            "properties": {
+              "certification": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/PhCertification"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "spaces": {
+                "items": {
+                  "$ref": "#/$defs/PhSpace"
+                },
+                "title": "Spaces",
+                "type": "array"
+              },
+              "type": {
+                "default": "PhRoomProperties",
+                "title": "Type",
+                "type": "string"
+              }
+            },
+            "title": "PhRoomProperties",
+            "type": "object"
+          },
+          "PhSpace": {
+            "additionalProperties": true,
+            "description": "Minimal PH space payload envelope for contract-first evolution.",
+            "properties": {
+              "icfa": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Icfa"
+              },
+              "id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Id"
+              },
+              "tfa": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Tfa"
+              },
+              "volume": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Volume"
+              }
+            },
+            "title": "PhSpace",
+            "type": "object"
+          }
+        },
+        "additionalProperties": true,
+        "description": "Top-level extension payload mapping used in HBJSON properties.",
+        "properties": {
+          "aperture": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/PhApertureProperties"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "energy": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/PhEnergyProperties"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "face": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/PhFaceProperties"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "hvac": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/PhHvacProperties"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "room": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/PhRoomProperties"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "title": "PhModelEnvelope",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "PhModelEnvelope",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {}
+}
