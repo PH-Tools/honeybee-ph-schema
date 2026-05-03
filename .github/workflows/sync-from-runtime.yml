@@ -25,13 +25,12 @@ jobs:
       - name: Resolve runtime payload
         id: payload
         run: |
-          EVENT_PATH="${GITHUB_EVENT_PATH}"
           python - <<'PY'
           import json
           import os
           from pathlib import Path
 
-          event_path = Path(os.environ["EVENT_PATH"])
+          event_path = Path(os.environ["GITHUB_EVENT_PATH"])
           payload = {}
           if event_path.exists():
             data = json.loads(event_path.read_text(encoding="utf-8"))
