@@ -50,7 +50,7 @@ jobs:
         run: python scripts/build_schemas.py
 
       - name: Create sync pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: chore/runtime-sync-${{ github.run_id }}
           title: "chore: sync schema artifacts from runtime ${{ steps.payload.outputs.runtime_version }}"
